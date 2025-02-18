@@ -6,6 +6,7 @@ import {
   InteractionResponseTypes,
 } from "./deps.ts";
 import { Secret } from "./envValues.ts";
+import kusa from "./kusa.ts";
 
 const bot = createBot({
   token: Secret.DISCORD_TOKEN,
@@ -23,11 +24,17 @@ const nekoCommand: CreateSlashApplicationCommand = {
   description: "にゃーんと返します",
 };
 
+const kusaCommand: CreateSlashApplicationCommand = {
+  name: "kusa",
+  description: "現在のcontribution数を表示します",
+};
+
 await bot.helpers.upsertGuildApplicationCommands(Secret.GUILD_ID, [
   nekoCommand,
+  kusaCommand,
 ]);
 
-bot.events.interactionCreate = (b, interaction) => {
+bot.events.interactionCreate = async (b, interaction) => {
   console.log("Received interaction:", interaction.data?.name);
 
   switch (interaction.data?.name) {
@@ -40,9 +47,23 @@ bot.events.interactionCreate = (b, interaction) => {
       });
       break;
     }
+    case "kusa": {
+      const res: string = await kusa();
+      b.helpers.sendInteractionResponse(interaction.id, interaction.token, {
+        type: InteractionResponseTypes.ChannelMessageWithSource,
+        data: {
+          content: res,
+        },
+      });
+      break;
+    }
     default:
       console.log("Unknown command:", interaction.data?.name);
   }
 };
 
 await startBot(bot);
+
+Deno.cron("Continuous Request", "*/2 * * * *", () => {
+  console.log("running...");
+});

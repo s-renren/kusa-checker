@@ -1,6 +1,52 @@
 {
   "version": "4",
+  "specifiers": {
+    "npm:@types/node@*": "22.5.4"
+  },
+  "npm": {
+    "@types/node@22.5.4": {
+      "integrity": "sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
+    "undici-types@6.19.8": {
+      "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw=="
+    }
+  },
+  "redirects": {
+    "https://esm.sh/@octokit/auth-token@^5.0.0?target=denonext": "https://esm.sh/@octokit/auth-token@5.1.2?target=denonext",
+    "https://esm.sh/@octokit/core?dts": "https://esm.sh/@octokit/core@6.1.4?dts",
+    "https://esm.sh/@octokit/endpoint@^10.1.3?target=denonext": "https://esm.sh/@octokit/endpoint@10.1.3?target=denonext",
+    "https://esm.sh/@octokit/graphql?dts": "https://esm.sh/@octokit/graphql@8.2.1?dts",
+    "https://esm.sh/@octokit/graphql@^8.1.2?target=denonext": "https://esm.sh/@octokit/graphql@8.2.1?target=denonext",
+    "https://esm.sh/@octokit/request-error@^6.1.7?target=denonext": "https://esm.sh/@octokit/request-error@6.1.7?target=denonext",
+    "https://esm.sh/@octokit/request@^9.2.1?target=denonext": "https://esm.sh/@octokit/request@9.2.2?target=denonext",
+    "https://esm.sh/@octokit/request@^9.2.2?target=denonext": "https://esm.sh/@octokit/request@9.2.2?target=denonext",
+    "https://esm.sh/before-after-hook@^3.0.2?target=denonext": "https://esm.sh/before-after-hook@3.0.2?target=denonext",
+    "https://esm.sh/fast-content-type-parse@^2.0.0?target=denonext": "https://esm.sh/fast-content-type-parse@2.0.1?target=denonext",
+    "https://esm.sh/universal-user-agent@^7.0.0?target=denonext": "https://esm.sh/universal-user-agent@7.0.2?target=denonext",
+    "https://esm.sh/universal-user-agent@^7.0.2?target=denonext": "https://esm.sh/universal-user-agent@7.0.2?target=denonext"
+  },
   "remote": {
+    "https://cdn.skypack.dev/-/@octokit/auth-token@v5.1.2-OQNa9KliYqN3l2ow5fCP/dist=es2019,mode=imports/optimized/@octokit/auth-token.js": "f021447a1b3f42c4c053d26b04ae5149740f60fa989731881eb504110491034b",
+    "https://cdn.skypack.dev/-/@octokit/core@v6.1.4-SVeRVSIg7x6C0fY3snLW/dist=es2019,mode=imports/optimized/@octokit/core.js": "afddc07e29d66fe2313743596443eaf759c3b6a9a8c5ff5ca18767e58f673a91",
+    "https://cdn.skypack.dev/-/@octokit/endpoint@v10.1.2-vsmbdqXaZFAIUUVPMS1I/dist=es2019,mode=imports/optimized/@octokit/endpoint.js": "78c90223e864c102cc30926c3ba7e5c800326ee2dd50b63733cbc2714f7b0890",
+    "https://cdn.skypack.dev/-/@octokit/endpoint@v10.1.3-GOqmsKxYgzp2i7qhv4Tn/dist=es2019,mode=imports/optimized/@octokit/endpoint.js": "9aef22d7dd37ed56e48e1fe0f2c15e6f2c3a046bd942d9aea57b8ad855005298",
+    "https://cdn.skypack.dev/-/@octokit/graphql@v8.2.0-BWS83nlgIgvVBP5rPadh/dist=es2019,mode=imports/optimized/@octokit/graphql.js": "490eb74ee9ed25a9cc510a979b42cb3110a0af50afed9d20a9fa6301ce0289e3",
+    "https://cdn.skypack.dev/-/@octokit/graphql@v8.2.1-m5MImEyXiwYE38BOQvOu/dist=es2019,mode=imports/optimized/@octokit/graphql.js": "33e20c6c2ac88d851af3ba32873e8edd9ea897d46c39069f949b0fb43f06db51",
+    "https://cdn.skypack.dev/-/@octokit/request-error@v6.1.6-qzt5e9XVbvkNFsluC62n/dist=es2019,mode=imports/optimized/@octokit/request-error.js": "b5ddc458af2a68c77b399680bfcaa8bb7b90602bc90d9a00e7cb6fbac6ed6e43",
+    "https://cdn.skypack.dev/-/@octokit/request-error@v6.1.7-AHQU5ycAOH9AO3Hd6PVO/dist=es2019,mode=imports/optimized/@octokit/request-error.js": "3148a9cd1c979c779319c4c4dfb10bc7789756e51da5068106094705b370287a",
+    "https://cdn.skypack.dev/-/@octokit/request@v9.2.0-AkOmMWDp2NqqoTqJLBjY/dist=es2019,mode=imports/optimized/@octokit/request.js": "6e4b057f52c1ea0e465918043b357816e69b8254c2a25fedd2876ced9b65e93e",
+    "https://cdn.skypack.dev/-/@octokit/request@v9.2.1-0QWZmzhpIW77iol3S6ne/dist=es2019,mode=imports/optimized/@octokit/request.js": "4706a3e9d346d482d6bd4e72926ea11421197737470f9f9d360e3e039887dbf0",
+    "https://cdn.skypack.dev/-/@octokit/request@v9.2.2-4X0yCD6w3D7KjDQ61BDL/dist=es2019,mode=imports/optimized/@octokit/request.js": "4706a3e9d346d482d6bd4e72926ea11421197737470f9f9d360e3e039887dbf0",
+    "https://cdn.skypack.dev/-/before-after-hook@v3.0.2-O5uxqMgrUAGOKyn6BRcV/dist=es2019,mode=imports/optimized/before-after-hook.js": "fff481bfb6859e458604eb30bf96df68d19be017ae55ead306b67ebf7753ce2a",
+    "https://cdn.skypack.dev/-/dayjs@v1.11.13-VE4qN76xFOf6Bduj9jfS/dist=es2019,mode=imports/optimized/dayjs.js": "596a73ea537b1d5350ff8ccdb35fdb86ed5b8c50112f8d2ceabeda4ab33f0458",
+    "https://cdn.skypack.dev/-/fast-content-type-parse@v2.0.1-vGQ3OHnYiMK4tAOcaAsf/dist=es2019,mode=imports/optimized/fast-content-type-parse.js": "4d2da4b30887bc0ec2b94a376b868002b26e7bfc568a14152ca143eefea7b181",
+    "https://cdn.skypack.dev/-/universal-user-agent@v7.0.2-pHI9S8fNYvJSDkmXVgON/dist=es2019,mode=imports/optimized/universal-user-agent.js": "405c5b520428264fe2f6ea4a0e0120cf37fe611265dbb5bdde73f5e23d053725",
+    "https://cdn.skypack.dev/@octokit/core": "d3d011778a68c12b5605db836ae8c00a89660ffaa31adeaba442d05f87be5f89",
+    "https://cdn.skypack.dev/@octokit/graphql": "a30c70a039ce79ef044aa9792f8407415f8a8674c7777741e4e91016ff31a4fd",
+    "https://cdn.skypack.dev/dayjs": "d0f1a843dc957ca04a90599c778faea9479dd9dddab50d8cf371a5f61e36d7da",
     "https://deno.land/std@0.167.0/dotenv/mod.ts": "9846f28b263c0c793345d74939f69bf34b46446aa2450e070c10a2140064165a",
     "https://deno.land/std@0.167.0/dotenv/util.ts": "6cc392f087577a26a27f0463f77cc0c31a390aa055917099935b36eb2454592d",
     "https://deno.land/x/discordeno@17.1.0/bot.ts": "2c25a025326b40af18ebc7e16497b49efe84fac5121ab706f9312670583c29c5",
@@ -388,6 +434,25 @@
     "https://deno.land/x/discordeno@17.1.0/util/utils.ts": "b16797ea1918af635f0c04c345a7c9b57c078310ac18d0c86936ec8abfaeddeb",
     "https://deno.land/x/discordeno@17.1.0/util/validateLength.ts": "7c610911d72082f9cfe2c455737cd37d8ce8f323483f0ef65fdfea6a993984b5",
     "https://deno.land/x/discordeno@17.1.0/util/verifySignature.ts": "8ba1c3d2698f347b4f32a76bd33edeb67ee9d23c34f419a797c393926786bb97",
+    "https://esm.sh/@octokit/auth-token@5.1.2/denonext/auth-token.mjs": "360feb2cb940bfa2e20ba6e5b7c366b207e7b8cb3a2ff983f3d33b19087cdc50",
+    "https://esm.sh/@octokit/auth-token@5.1.2?target=denonext": "0e5dc846d0c00da36580f08e0d4115526daf6256acf07fabedc06716dfbf72c9",
+    "https://esm.sh/@octokit/core@6.1.4/denonext/core.mjs": "5ba84e79402a74b5fc90a5ac789095383cc05aba3d713ed1b15628d8563e23cb",
+    "https://esm.sh/@octokit/core@6.1.4?dts": "4307d497897c3f619a859db1fa3a8e6ba099ec915999bb13efe32615c8a75ea5",
+    "https://esm.sh/@octokit/endpoint@10.1.3/denonext/endpoint.mjs": "ee30211e2130c718703820a3e97761185cede0fcd572f4fe495d7eafe1e27fe5",
+    "https://esm.sh/@octokit/endpoint@10.1.3?target=denonext": "58fb4a907dc5c4117f96fa52aa0d3d0db4437972c3f032f5899ccf041b04628f",
+    "https://esm.sh/@octokit/graphql@8.2.1/denonext/graphql.mjs": "94a4e53110f4a842c0d1ab1805809b0fb45a1f1cbdc26a23d23aafc908742679",
+    "https://esm.sh/@octokit/graphql@8.2.1?dts": "7735a5089317f0f3dcf03393ae1d7cf1dbb64010afaad51a8d91ed5c317f06aa",
+    "https://esm.sh/@octokit/graphql@8.2.1?target=denonext": "7735a5089317f0f3dcf03393ae1d7cf1dbb64010afaad51a8d91ed5c317f06aa",
+    "https://esm.sh/@octokit/request-error@6.1.7/denonext/request-error.mjs": "a78094bd74d2b9b3cb6a38f18e43c3ee31534ff726d65eebf174a324b22ca60b",
+    "https://esm.sh/@octokit/request-error@6.1.7?target=denonext": "f3b59c5f039efcc2c5e7946a1e0be7cd1f50297b13f81a99a00587f124fb69cd",
+    "https://esm.sh/@octokit/request@9.2.2/denonext/request.mjs": "02df528ded430496e93415ce7b291a8b91cdd827f9724f898cf4db7e31988bae",
+    "https://esm.sh/@octokit/request@9.2.2?target=denonext": "cfe43f13ac51e7494375f0cc1a81aeedebcb95cfb6b9cca468db0c3d7c786a15",
+    "https://esm.sh/before-after-hook@3.0.2/denonext/before-after-hook.mjs": "1a862839e15e4816de946c11023cbec3cb1d276e3a86073adfaac9dca6871aca",
+    "https://esm.sh/before-after-hook@3.0.2?target=denonext": "923592fc40b4609eac335800f88c890d81c5f5f12e0b22fd8fd0646313c634f7",
+    "https://esm.sh/fast-content-type-parse@2.0.1/denonext/fast-content-type-parse.mjs": "436d0ff6ce4508efcb9023892d25cc9d7eb321e9321a0d3aaf870300dc2e8578",
+    "https://esm.sh/fast-content-type-parse@2.0.1?target=denonext": "7170ebd0186887d73afc67050a28e5350171e5e842e82a10309e829eabdf138a",
+    "https://esm.sh/universal-user-agent@7.0.2/denonext/universal-user-agent.mjs": "c5370728870841e1061776d12f5776929bb04945b0f8d5e4251207eab57d35ea",
+    "https://esm.sh/universal-user-agent@7.0.2?target=denonext": "1c7589a3ed835be8bf13e6c78c7d507af65b7945b92edbf3ad25428e60e072f4",
     "https://unpkg.com/@evan/wasm@0.0.93/target/ed25519/deno.js": "9728126890f17b71cee41afdab8a4bc362f6b9f409fe0a5c4f6ca9f3b510fd3a",
     "https://unpkg.com/@evan/wasm@0.0.94/target/zlib/deno.js": "e65131e1c1f45e64960f2699a0b868927ea5c9201c4b986a7cfc57b18be5cc09"
   }
