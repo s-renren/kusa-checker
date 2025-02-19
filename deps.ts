@@ -9,6 +9,3 @@ export { default as dayjs } from "https://cdn.skypack.dev/dayjs";
 
 // graphql
 export { graphql } from "https://esm.sh/@octokit/graphql?dts";
-
-// serve
-export { serve } from "https://deno.land/std@0.193.0/http/server.ts";
