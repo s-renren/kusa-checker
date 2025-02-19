@@ -1,0 +1,13 @@
+name: Run Deno Deploy Function
+
+on:
+  schedule:
+    - cron: "*/3 * * * *"
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Deno Deploy Function
+        run: curl -X GET "https://renren-kusa-checke-19.deno.dev/"
