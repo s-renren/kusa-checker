@@ -5,6 +5,7 @@ import {
   sendMessage,
   CreateSlashApplicationCommand,
   InteractionResponseTypes,
+  serve,
 } from "./deps.ts";
 import { Secret } from "./envValues.ts";
 import kusa from "./kusa.ts";
@@ -55,7 +56,7 @@ const sendMessages = async (message: string) => {
   });
 };
 
-Deno.cron("Continuous Request", "*/3 * * * *", () => {
+const checkTime = async () => {
   const now = new Date();
   const res = now.toTimeString().split(" ")[0];
   const [hour, minute, _] = res.split(":").map(Number);
@@ -69,7 +70,7 @@ Deno.cron("Continuous Request", "*/3 * * * *", () => {
       const kusaCount = await kusa();
       if (minute === 0) {
         if (kusaCount === "No contributions") {
-          sendMessages(
+          await sendMessages(
             "おや？今日の草が生えていないようですね..." +
               "\n" +
               "1 commitでもいいので頑張りましょう!"
@@ -79,6 +80,10 @@ Deno.cron("Continuous Request", "*/3 * * * *", () => {
     }
   };
 
-  isTime();
-  console.log("running... now ->", res);
+  await isTime();
+};
+
+serve(async (_req) => {
+  await checkTime();
+  return new Response("Executed", { status: 200 });
 });
