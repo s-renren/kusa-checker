@@ -2,6 +2,7 @@ import {
   createBot,
   Intents,
   startBot,
+  sendMessage,
   CreateSlashApplicationCommand,
   InteractionResponseTypes,
 } from "./deps.ts";
@@ -14,15 +15,9 @@ const bot = createBot({
   events: {
     ready: (_bot, payload) => {
       console.log(`${payload.user.username} is ready!`);
-      console.log(Secret.GUILD_ID);
     },
   },
 });
-
-const nekoCommand: CreateSlashApplicationCommand = {
-  name: "neko",
-  description: "にゃーんと返します",
-};
 
 const kusaCommand: CreateSlashApplicationCommand = {
   name: "kusa",
@@ -30,7 +25,6 @@ const kusaCommand: CreateSlashApplicationCommand = {
 };
 
 await bot.helpers.upsertGuildApplicationCommands(Secret.GUILD_ID, [
-  nekoCommand,
   kusaCommand,
 ]);
 
@@ -38,15 +32,6 @@ bot.events.interactionCreate = async (b, interaction) => {
   console.log("Received interaction:", interaction.data?.name);
 
   switch (interaction.data?.name) {
-    case "neko": {
-      b.helpers.sendInteractionResponse(interaction.id, interaction.token, {
-        type: InteractionResponseTypes.ChannelMessageWithSource,
-        data: {
-          content: "にゃーん！！",
-        },
-      });
-      break;
-    }
     case "kusa": {
       const res: string = await kusa();
       b.helpers.sendInteractionResponse(interaction.id, interaction.token, {
@@ -64,6 +49,36 @@ bot.events.interactionCreate = async (b, interaction) => {
 
 await startBot(bot);
 
-Deno.cron("Continuous Request", "*/2 * * * *", () => {
-  console.log("running...");
+const sendMessages = async (message: string) => {
+  await sendMessage(bot, Secret.CHANNEL_ID, {
+    content: message,
+  });
+};
+
+Deno.cron("Continuous Request", "*/3 * * * *", () => {
+  const now = new Date();
+  const res = now.toTimeString().split(" ")[0];
+  const [hour, minute, _] = res.split(":").map(Number);
+
+  const isTime = async () => {
+    if (hour === 9) {
+      if (minute === 0) {
+        sendMessages("おはようございます！今日もコーディング頑張りましょう！");
+      }
+    } else if (hour === 12 || hour === 15 || hour === 21) {
+      const kusaCount = await kusa();
+      if (minute === 0) {
+        if (kusaCount === "No contributions") {
+          sendMessages(
+            "おや？今日の草が生えていないようですね..." +
+              "\n" +
+              "1 commitでもいいので頑張りましょう!"
+          );
+        }
+      }
+    }
+  };
+
+  isTime();
+  console.log("running... now ->", res);
 });

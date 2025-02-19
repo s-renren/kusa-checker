@@ -1,5 +1,4 @@
-import { graphql } from "https://esm.sh/@octokit/graphql?dts";
-import dayjs from "https://cdn.skypack.dev/dayjs";
+import { dayjs, graphql } from "../deps.ts";
 import { Secret } from "../envValues.ts";
 
 type Contributions = {
