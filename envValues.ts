@@ -14,4 +14,5 @@ export const Secret = {
   GITHUB_ACCESS_TOKEN: Deno.env.get("GITHUB_ACCESS_TOKEN")!,
   GUILD_ID: Deno.env.get("GUILD_ID")!,
   CHANNEL_ID: Deno.env.get("CHANNEL_ID")!,
+  ROLE_ID: Deno.env.get("ROLE_ID")!,
 };

@@ -1,3 +1,4 @@
+import { deprivationRole, grantRole } from "./coding.ts";
 import {
   createBot,
   Intents,
@@ -24,8 +25,14 @@ const kusaCommand: CreateSlashApplicationCommand = {
   description: "現在のcontribution数を表示します",
 };
 
+const grantRoleCoding: CreateSlashApplicationCommand = {
+  name: "coding",
+  description: "コーディング中に通知を来ないようにします",
+};
+
 await bot.helpers.upsertGuildApplicationCommands(Secret.GUILD_ID, [
   kusaCommand,
+  grantRoleCoding,
 ]);
 
 bot.events.interactionCreate = async (b, interaction) => {
@@ -40,6 +47,35 @@ bot.events.interactionCreate = async (b, interaction) => {
           content: res,
         },
       });
+      break;
+    }
+    case "coding": {
+      try {
+        const member = await b.helpers.getMember(
+          Secret.GUILD_ID,
+          interaction.user.id
+        );
+        const hasRole = member.roles.includes(BigInt(Secret.ROLE_ID));
+
+        if (hasRole) {
+          await deprivationRole(b, interaction);
+        } else {
+          await grantRole(b, interaction);
+        }
+      } catch (e) {
+        console.log("Failed to add role:", e);
+        await b.helpers.sendInteractionResponse(
+          interaction.id,
+          interaction.token,
+          {
+            type: InteractionResponseTypes.ChannelMessageWithSource,
+            data: {
+              content: "ロールの付与に失敗しました。",
+            },
+          }
+        );
+      }
+
       break;
     }
     default:
@@ -79,6 +115,6 @@ Deno.cron("Continuous Request", "*/3 * * * *", async () => {
   const res = now.toTimeString().split(" ")[0];
   const [hour, minute, _] = res.split(":").map(Number);
 
-  await isTime(hour, minute);
-  console.log("running... now ->", res);
+  await isTime(hour + 9, minute);
+  console.log("running... now ->", hour + 9, ":", minute);
 });
