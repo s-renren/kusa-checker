@@ -3,14 +3,15 @@ import {
   createBot,
   Intents,
   startBot,
-  sendMessage,
   CreateSlashApplicationCommand,
   InteractionResponseTypes,
+  Bot,
 } from "./deps.ts";
 import { Secret } from "./envValues.ts";
+import { isTime } from "./isTime.ts";
 import kusa from "./kusa.ts";
 
-const bot = createBot({
+export const bot = createBot({
   token: Secret.DISCORD_TOKEN,
   intents: Intents.Guilds | Intents.GuildMessages | Intents.MessageContent,
   events: {
@@ -85,36 +86,24 @@ bot.events.interactionCreate = async (b, interaction) => {
 
 await startBot(bot);
 
-const sendMessages = async (message: string) => {
-  await sendMessage(bot, Secret.CHANNEL_ID, {
-    content: message,
-  });
-};
-
-const isTime = async (hour: number, minute: number): Promise<void> => {
-  if (hour === 9) {
-    if (minute === 0) {
-      sendMessages("おはようございます！今日もコーディング頑張りましょう！");
-    }
-  } else if (hour === 12 || hour === 15 || hour === 21) {
-    const kusaCount = await kusa();
-    if (minute === 0) {
-      if (kusaCount === "No contributions") {
-        await sendMessages(
-          "おや？今日の草が生えていないようですね..." +
-            "\n" +
-            "1 commitでもいいので頑張りましょう!"
-        );
-      }
-    }
-  }
-};
-
 Deno.cron("Continuous Request", "*/3 * * * *", async () => {
   const now = new Date();
   const res = now.toTimeString().split(" ")[0];
   const [hour, minute, _] = res.split(":").map(Number);
+  const bot = (globalThis as unknown as { bot: Bot }).bot;
 
-  await isTime(hour + 9, minute);
-  console.log("running... now ->", hour + 9, ":", minute);
+  if (hour === 0 && minute === 0) {
+    try {
+      await bot.helpers.removeRole(
+        Secret.GUILD_ID,
+        Secret.USER_ID,
+        Secret.ROLE_ID
+      );
+    } catch (e) {
+      console.log("error:", e);
+    }
+  }
+
+  await isTime(hour, minute);
+  console.log("running... now ->", hour, ":", minute);
 });

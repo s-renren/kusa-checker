@@ -18,7 +18,6 @@ type Contributions = {
 
 const getContributions = async () => {
   const userName = "s-renren";
-
   const now = dayjs().format("YYYY-MM-DDTHH:mm:ss");
   const query = `
     query contributions ($userName:String!, $now:DateTime!) {
@@ -54,6 +53,7 @@ const getContributions = async () => {
     }
   );
 
+  console.log("command:kusa", now);
   return dailyContributions;
 };
 

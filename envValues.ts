@@ -15,4 +15,5 @@ export const Secret = {
   GUILD_ID: Deno.env.get("GUILD_ID")!,
   CHANNEL_ID: Deno.env.get("CHANNEL_ID")!,
   ROLE_ID: Deno.env.get("ROLE_ID")!,
+  USER_ID: Deno.env.get("USER_ID")!,
 };
