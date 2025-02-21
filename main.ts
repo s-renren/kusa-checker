@@ -21,6 +21,13 @@ export const bot = createBot({
   },
 });
 
+const formatter = new Intl.DateTimeFormat("ja-JP", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+});
+
 const kusaCommand: CreateSlashApplicationCommand = {
   name: "kusa",
   description: "現在のcontribution数を表示します",
@@ -87,9 +94,9 @@ bot.events.interactionCreate = async (b, interaction) => {
 await startBot(bot);
 
 Deno.cron("Continuous Request", "*/3 * * * *", async () => {
-  const now = new Date();
-  const res = now.toTimeString().split(" ")[0];
-  const [hour, minute, _] = res.split(":").map(Number);
+  const nowJST = formatter.formatToParts(new Date());
+  const hour = Number(nowJST.find((part) => part.type === "hour")?.value);
+  const minute = Number(nowJST.find((part) => part.type === "minute")?.value);
   const bot = (globalThis as unknown as { bot: Bot }).bot;
 
   if (hour === 0 && minute === 0) {
