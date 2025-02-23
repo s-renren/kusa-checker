@@ -18,24 +18,21 @@ export const isTime = async (hour: number, minute: number): Promise<void> => {
       isDone = false;
     }
   }
-  if (hour === 9) {
-    if (minute === 0) {
-      sendMessages("おはようございます！今日もコーディング頑張りましょう！");
-      console.log("Send message");
-    }
+  if (hour === 9 && minute === 0) {
+    sendMessages("おはようございます！今日もコーディング頑張りましょう！");
+    console.log("Send message");
   } else if (
+    minute === 0 &&
     (hour === 11 || hour === 13 || hour === 15 || hour === 21) &&
-    isDone
+    !isDone
   ) {
     const kusaCount = await kusa();
-    if (minute === 0) {
-      if (kusaCount === "No contributions") {
-        await sendMessages(
-          "おや？今日の草が生えていないようですね..." +
-            "\n" +
-            "1 commitでもいいので頑張りましょう!"
-        );
-      }
+    if (kusaCount === "No contributions") {
+      await sendMessages(
+        "おや？今日の草が生えていないようですね..." +
+          "\n" +
+          "1 commitでもいいので頑張りましょう!"
+      );
     }
   }
 };
