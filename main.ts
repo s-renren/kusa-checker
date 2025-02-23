@@ -1,15 +1,14 @@
-import { deprivationRole, grantRole } from "./coding.ts";
+import { deprivationRole, grantRole } from "./feature/coding.ts";
 import {
   createBot,
   Intents,
   startBot,
   CreateSlashApplicationCommand,
   InteractionResponseTypes,
-  Bot,
 } from "./deps.ts";
 import { Secret } from "./envValues.ts";
-import { isTime } from "./isTime.ts";
-import kusa from "./kusa.ts";
+import { isTime } from "./feature/isTime.ts";
+import kusa from "./feature/kusa.ts";
 
 export const bot = createBot({
   token: Secret.DISCORD_TOKEN,
@@ -97,7 +96,6 @@ Deno.cron("Continuous Request", "*/3 * * * *", async () => {
   const nowJST = formatter.formatToParts(new Date());
   const hour = Number(nowJST.find((part) => part.type === "hour")?.value);
   const minute = Number(nowJST.find((part) => part.type === "minute")?.value);
-  const bot = (globalThis as unknown as { bot: Bot }).bot;
 
   if (hour === 0 && minute === 0) {
     try {
