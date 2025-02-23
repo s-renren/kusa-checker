@@ -1,4 +1,4 @@
-import getContributions from "./contributions/main.ts";
+import getContributions from "./contributions.ts";
 
 const kusa = async (): Promise<string> => {
   const res: number[] = await getContributions();

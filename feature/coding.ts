@@ -1,5 +1,5 @@
-import { Bot, Interaction, InteractionResponseTypes } from "./deps.ts";
-import { Secret } from "./envValues.ts";
+import { Bot, Interaction, InteractionResponseTypes } from "../deps.ts";
+import { Secret } from "../envValues.ts";
 
 export const grantRole = async (b: Bot, interaction: Interaction) => {
   await b.helpers.addRole(Secret.GUILD_ID, interaction.user.id, Secret.ROLE_ID);

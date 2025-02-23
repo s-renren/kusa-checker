@@ -1,7 +1,7 @@
-import { sendMessage } from "./deps.ts";
-import { Secret } from "./envValues.ts";
+import { sendMessage } from "../deps.ts";
+import { Secret } from "../envValues.ts";
 import kusa from "./kusa.ts";
-import { bot } from "./main.ts";
+import { bot } from "../main.ts";
 
 const sendMessages = async (message: string) => {
   await sendMessage(bot, Secret.CHANNEL_ID, {
