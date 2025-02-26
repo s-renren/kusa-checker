@@ -10,12 +10,12 @@ const sendMessages = async (message: string) => {
 };
 
 export const isTime = async (hour: number, minute: number): Promise<void> => {
-  let isDone: boolean = true;
+  let isReady: boolean = true;
   if (minute === 0) {
     const member = await bot.helpers.getMember(Secret.GUILD_ID, Secret.USER_ID);
     const hasRole = member.roles.includes(BigInt(Secret.ROLE_ID));
     if (hasRole) {
-      isDone = false;
+      isReady = false;
     }
   }
   if (hour === 9 && minute === 0) {
@@ -24,7 +24,7 @@ export const isTime = async (hour: number, minute: number): Promise<void> => {
   } else if (
     minute === 0 &&
     (hour === 11 || hour === 13 || hour === 15 || hour === 21) &&
-    !isDone
+    isReady
   ) {
     const kusaCount = await kusa();
     if (kusaCount === "No contributions") {
